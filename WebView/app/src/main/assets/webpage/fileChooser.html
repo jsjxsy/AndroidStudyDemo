@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,maximun-scale=1,mininum-scsle=1,user-scale=1">
+    <title>file chooser</title>
+    <style>
+        .filechooser{
+            width:95%;
+            height: 50px;
+            -webkit-background-clip: border-box;
+
+        }
+
+
+
+
+    </style>
+    <script>
+        var display=function (){
+            var path=document.getElementById("file_chooser").textContent;
+            document.getElementById("filechooser_display").innerHTML="<b>"+path+"</b>";
+            var oFReader = new FileReader();
+            oFReader.readAsDataURL(document.getElementById("file_chooser").files[0]);
+            oFReader.onload = function (oFREvent) {
+                   console.log("onload");
+                document.getElementById("uploadPreview").src = oFREvent.target.result;
+            };
+        }
+
+        function test(uri) {
+            alert("1");
+            console.log("uri"+uri)
+            document.getElementById("uploadPreview2").src = uri;
+        }
+
+    </script>
+</head>
+<body>
+<ul class="listview">
+    <li class="listviewItem">
+        <fieldset class="itemset">
+            <input class="filechooser" id="file_chooser" type="file" placeholder="file path"
+                   onchange="display()" oninput="display()"><br>
+            <p id="filechooser_display"></p>
+            <div class="line_black"></div>
+
+        </fieldset>
+    </li>
+    <li>
+        <img id="uploadPreview" alt="选中的图片预览" style="width: 100%;height: auto;">
+    </li>
+    <li>
+        <img id="uploadPreview2" alt="选中的图片预览" style="width: 100%;height: auto;">
+    </li>
+</ul>
+
+</body>
+
+</html>
