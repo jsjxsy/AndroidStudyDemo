@@ -1,6 +1,8 @@
 package com.xsy.customview.servicebackgrounddemo
 
 import android.app.Application
+import android.content.Intent
+import android.util.Log
 import com.xsy.customview.servicebackgrounddemo.MyService
 
 /**
@@ -11,8 +13,9 @@ import com.xsy.customview.servicebackgrounddemo.MyService
 class MainApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        val intent: `val` = Intent(applicationContext, MyService::MyService::)
-        java
+        Log.e("xsy","MainApplication MyService")
+        val intent = Intent(this, MyService::class.java)
         startService(intent)
+        Log.e("xsy", "MainApplication MyService startService");
     }
 }
