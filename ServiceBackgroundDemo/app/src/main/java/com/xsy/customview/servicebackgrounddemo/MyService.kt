@@ -13,7 +13,7 @@ class MyService : Service() {
 
     override fun onCreate() {
         super.onCreate()
-        Log.e("xsy","MyService onCreate")
+        Log.e("xsy","MyService onCreate process id:"+ android.os.Process.myPid())
     }
 
     override fun onStart(intent: Intent?, startId: Int) {

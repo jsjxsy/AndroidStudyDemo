@@ -3,6 +3,7 @@ package com.xsy.customview.workmanagerdemo
 import android.content.Context
 import android.os.SystemClock
 import android.util.Log
+import android.widget.Toast
 import androidx.work.Data
 import androidx.work.Worker
 import androidx.work.WorkerParameters
@@ -22,14 +23,14 @@ class MyWork(context: Context, workerParams: WorkerParameters) : Worker(context,
 
     override fun doWork(): Result {
         Log.e("xsy", "do work")
-//        for (i in 1..10){
-//            val process = Data.Builder()
-//                .putInt("process", i)
-//                .build()
-//            setProgressAsync(process)
-//            SystemClock.sleep(1000 * 1)
-//        }
-
+        for (i in 1..10){
+            val process = Data.Builder()
+                .putInt("process", i)
+                .build()
+            setProgressAsync(process)
+            SystemClock.sleep(1000 * 1)
+        }
+        Toast.makeText(applicationContext,   "do work", Toast.LENGTH_SHORT).show()
         val name = inputData.getString("name")
         val age = inputData.getInt("age", 0)
         Log.e("xsy", "name: $name age: $age")

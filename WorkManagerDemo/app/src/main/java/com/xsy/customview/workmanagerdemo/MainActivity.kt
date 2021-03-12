@@ -41,22 +41,22 @@ class MainActivity : AppCompatActivity() {
         WorkManager.getInstance(this)
                 .beginWith(listOf(request1,request2,request3))
                 .enqueue()
-
-        WorkManager.getInstance(this)
-                .beginWith(request1)
-                .then(request2)
-                .then(request3)
-                .enqueue()
-
-        val chuan1 = WorkManager.getInstance(this)
-                .beginWith(request1)
-                .then(request2)
-        val chuan2 = WorkManager.getInstance()
-                .beginWith(request3)
-                .then(request4)
-        WorkContinuation
-                .combine(listOf(chuan1, chuan2))
-                .enqueue()
+//
+//        WorkManager.getInstance(this)
+//                .beginWith(request1)
+//                .then(request2)
+//                .then(request3)
+//                .enqueue()
+//
+//        val chuan1 = WorkManager.getInstance(this)
+//                .beginWith(request1)
+//                .then(request2)
+//        val chuan2 = WorkManager.getInstance()
+//                .beginWith(request3)
+//                .then(request4)
+//        WorkContinuation
+//                .combine(listOf(chuan1, chuan2))
+//                .enqueue()
     }
 
     /**
