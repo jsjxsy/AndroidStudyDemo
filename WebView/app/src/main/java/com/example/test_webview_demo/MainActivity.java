@@ -51,6 +51,12 @@ public class MainActivity extends Activity {
 		if (!main_initialized) {
 			this.new_init();
 		}
+		findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(MainActivity.this, WebViewActivity.class));
+			}
+		});
 	}
 
 	// ////////////////////////////////////////////////////////////////////////////////////////////////

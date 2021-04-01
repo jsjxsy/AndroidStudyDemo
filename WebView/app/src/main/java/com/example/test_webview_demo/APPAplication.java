@@ -1,9 +1,15 @@
 package com.example.test_webview_demo;
 
+import android.app.ActivityManager;
 import android.app.Application;
+import android.content.Context;
+import android.os.Build;
 import android.util.Log;
+import android.webkit.WebView;
 
 import com.tencent.smtt.sdk.QbSdk;
+
+import java.util.List;
 
 public class APPAplication extends Application {
 
@@ -29,6 +35,35 @@ public class APPAplication extends Application {
 		};
 		//x5内核初始化接口
 		QbSdk.initX5Environment(getApplicationContext(),  cb);
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+			String processNameByAms = getCurrentProcessNameByAms();
+			String suffix = processNameByAms + "-webkit";
+			WebView.setDataDirectorySuffix(suffix);
+		}
 	}
+
+
+	private String getCurrentProcessNameByAms() {
+		try {
+			ActivityManager am = (ActivityManager) this.getApplicationContext().getSystemService(Context.ACTIVITY_SERVICE);
+			if (am == null) return "";
+			List<ActivityManager.RunningAppProcessInfo> info = am.getRunningAppProcesses();
+			if (info == null || info.size() == 0) return "";
+			int pid = android.os.Process.myPid();
+			for (ActivityManager.RunningAppProcessInfo aInfo : info) {
+				if (aInfo.pid == pid) {
+					if (aInfo.processName != null) {
+						return aInfo.processName;
+					}
+				}
+			}
+		} catch (Exception e) {
+			return "";
+		}
+		return "";
+	}
+
+
 
 }

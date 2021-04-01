@@ -28,7 +28,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.startBackgroundService).setOnClickListener {
-            startService(Intent(this,BackgroundService::class.java))
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                it.postDelayed({
+                    startForegroundService(Intent(this, BackgroundService::class.java))
+                }, 1000*65)
+            }
         }
     }
 }
