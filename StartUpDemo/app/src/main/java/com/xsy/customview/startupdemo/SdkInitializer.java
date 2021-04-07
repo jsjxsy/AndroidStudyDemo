@@ -14,12 +14,12 @@ import java.util.List;
  * @Description: 初始化SDK
  * @Version: 1.0
  **/
-public class SdkInitializer implements Initializer<Sdk> {
+public class SdkInitializer implements Initializer<Void> {
     @NonNull
     @Override
-    public Sdk create(@NonNull Context context) {
+    public Void create(@NonNull Context context) {
         Sdk.init(context);
-        return Sdk.getInstance();
+        return null;
     }
 
     @NonNull
